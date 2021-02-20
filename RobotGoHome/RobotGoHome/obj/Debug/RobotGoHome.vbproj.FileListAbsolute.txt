@@ -1,0 +1,12 @@
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\bin\Debug\RobotGoHome.exe.config
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\bin\Debug\RobotGoHome.exe
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\bin\Debug\RobotGoHome.pdb
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\bin\Debug\RobotGoHome.xml
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.vbprojAssemblyReference.cache
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.Resources.resources
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.vbproj.GenerateResource.cache
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.vbproj.CoreCompileInputs.cache
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.exe
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.xml
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.pdb
+C:\Users\cgxinyi\Documents\GitHub\RobotGoHome\RobotGoHome\RobotGoHome\obj\Debug\RobotGoHome.form_robot.resources
