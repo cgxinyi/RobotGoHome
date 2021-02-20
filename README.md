@@ -2,7 +2,7 @@
 Please move robo.png and home.jpg in the file to desktop in order to make the picture to work.
 
 How to play:
-Robot need to be straight up and same position with home in order to successfully send it home.
+Input command to send robot go home
 
 Commands: 
  R : rotate to right 90 degree 
