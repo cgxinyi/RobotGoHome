@@ -66,12 +66,8 @@
         End If
 
 
-        pic_robot.Top = topRobo
-        pic_robot.Left = widthRobo
-        pic_home.Top = topHome
-        pic_home.Left = widthHome
-        Console.WriteLine("output robo position" + (pic_robot.Top).ToString + "," + (pic_robot.Left).ToString)
-        Console.WriteLine("output home position" + (pic_home.Top).ToString + "," + (pic_home.Left).ToString)
+        pic_robot.Location = New Point(widthRobo, topRobo)
+        pic_home.Location = New Point(widthHome, topHome)
 
         'show commands info
         label_info.Text = "Commands: " & Environment.NewLine &
@@ -87,11 +83,11 @@
             Environment.NewLine & "( F2: forward 2 steps )" &
             Environment.NewLine & Environment.NewLine &
             "How to Win:" & Environment.NewLine &
-            "Robot need to be upright and" & Environment.NewLine &
-            "Be send to home at same position"
+            "Robot need to be send home at" & Environment.NewLine &
+            "stacking on top or left of home"
 
         ' Successfully send robot back home
-        If (pic_robot.Top = pic_home.Top Or pic_robot.Left = pic_home.Left) Then
+        If (topRobo = topHome And widthRobo = widthHome) Then
             MessageBox.Show("Thank you for sending robot back home!!")
         End If
     End Sub
@@ -115,92 +111,188 @@
             'read command input and command length
             commandLength = command.Length - 1
 
-            'read command for rotate to right and action
-            If (command.Contains("R")) Then
+            'check if input is empty and output message for user 
+            If (command = "") Then
+                MessageBox.Show("Please enter command to send robot go home.")
+
+                'read command for rotate to right and action
+            ElseIf (command.Contains("R") And IsNumeric(command.Substring(1, commandLength))) Then
                 Dim rotateTimeStr As String = command.Substring(1, commandLength)
                 Dim rotateTime As Integer = Integer.Parse(rotateTimeStr)
                 'rotate as time
                 If ((rotateTime Mod 4) = 1) Then
                     rotateRobot.RotateFlip(RotateFlipType.Rotate90FlipNone)
                     pic_robot.Image = rotateRobot
-                    robotPosition = 1
+                    robotPosition += 1
                     Console.WriteLine("Flip 90r success")
                 ElseIf ((rotateTime Mod 4) = 2) Then
                     rotateRobot.RotateFlip(RotateFlipType.Rotate180FlipNone)
                     pic_robot.Image = rotateRobot
-                    robotPosition = 2
+                    robotPosition += 2
                     Console.WriteLine("Flip 180r success")
                 ElseIf ((rotateTime Mod 4) = 3) Then
                     rotateRobot.RotateFlip(RotateFlipType.Rotate270FlipNone)
                     pic_robot.Image = rotateRobot
-                    robotPosition = 3
+                    robotPosition += 3
                     Console.WriteLine("Flip 270r success")
                 ElseIf ((rotateTime Mod 4) = 0) Then
-                    robotPosition = 0
+                    robotPosition += 0
                     Console.WriteLine("Flipping 360r")
                 End If
-            End If
 
-            'read command for rotate to left and action
-            If (command.Contains("L")) Then
+
+
+
+                'read command for rotate to left and action
+            ElseIf (command.Contains("L") And IsNumeric(command.Substring(1, commandLength))) Then
                 Dim rotateTimeStr As String = command.Substring(1, commandLength)
                 Dim rotateTime As Integer = Integer.Parse(rotateTimeStr)
                 'rotate as time
                 If ((rotateTime Mod 4) = 1) Then
                     rotateRobot.RotateFlip(RotateFlipType.Rotate270FlipNone)
                     pic_robot.Image = rotateRobot
-                    robotPosition = 3
+                    robotPosition += 3
                     Console.WriteLine("Flip 270l success")
                 ElseIf ((rotateTime Mod 4) = 2) Then
                     rotateRobot.RotateFlip(RotateFlipType.Rotate180FlipNone)
                     pic_robot.Image = rotateRobot
-                    robotPosition = 2
+                    robotPosition += 2
                     Console.WriteLine("Flip 180l success")
                 ElseIf ((rotateTime Mod 4) = 3) Then
                     rotateRobot.RotateFlip(RotateFlipType.Rotate90FlipNone)
                     pic_robot.Image = rotateRobot
-                    robotPosition = 1
+                    robotPosition += 1
                     Console.WriteLine("Flip 90l success")
                 ElseIf ((rotateTime Mod 4) = 0) Then
-                    robotPosition = 0
+                    robotPosition += 0
                     Console.WriteLine("Flipping 360l")
                 End If
-            End If
 
-            'read command input forward and action
-            If (command.Contains("F")) Then
+
+
+                'read command input forward and action
+            ElseIf (command.Contains("F") And IsNumeric(command.Substring(1, commandLength))) Then
                 Dim stepCount As String = command.Substring(1, commandLength)
                 'times that user command to move
                 Dim stepCountInt As Integer = Integer.Parse(stepCount)
                 'multiply 10 to move picture position
                 Dim stepMove As Integer = stepCountInt * 10
+                Console.WriteLine("stepcount" + stepCountInt.ToString + "stepmove" + stepMove.ToString)
                 'read imageposition via robotPosition if it is rotated or not and its location via topRobo&widthRobo
                 'move position by adding value to its original position
-                If (robotPosition = 0) Then
+                If ((robotPosition Mod 4) = 0) Then
                     'update new position
-                    topRobo = topRobo + stepMove
-                    pic_robot.Location = New Point(topRobo, widthRobo)
-                    Console.WriteLine("0move")
-                ElseIf (robotPosition = 1) Then
-                    'update new position
-                    widthRobo = widthRobo - stepMove
-                    pic_robot.Location = New Point(topRobo, widthRobo)
+                    Console.WriteLine("Robo position" + topRobo.ToString + "," + widthRobo.ToString)
+                    topRobo += stepMove
+                    If (topRobo > 0 And topRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("After changing" + (pic_robot.Location).ToString)
+                        Console.WriteLine("0move")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
 
-                    Console.WriteLine("1move")
-                ElseIf (robotPosition = 2) Then
-                    'update new position
-                    topRobo = topRobo - stepMove
-                    pic_robot.Location = New Point(topRobo, widthRobo)
+                    End If
 
-                    Console.WriteLine("2move")
-                ElseIf (robotPosition = 3) Then
+                ElseIf ((robotPosition Mod 4) = 1) Then
                     'update new position
-                    widthRobo = widthRobo + stepMove
-                    pic_robot.Location = New Point(topRobo, widthRobo)
+                    widthRobo -= stepMove
+                    If (widthRobo > 0 And widthRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("1movef")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
 
-                    Console.WriteLine("3move")
+                ElseIf ((robotPosition Mod 4) = 2) Then
+                    'update new position
+                    topRobo -= stepMove
+                    If (topRobo > 0 And topRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("2movef")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
+
+                ElseIf ((robotPosition Mod 4) = 3) Then
+                    'update new position
+                    widthRobo += stepMove
+                    If (widthRobo > 0 And widthRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("3movef")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
+
                 End If
 
+
+
+                'read command input backward and action
+            ElseIf (command.Contains("B") And IsNumeric(command.Substring(1, commandLength))) Then
+                Dim stepCount As String = command.Substring(1, commandLength)
+                'times that user command to move
+                Dim stepCountInt As Integer = Integer.Parse(stepCount)
+                'multiply 10 to move picture position
+                Dim stepMove As Integer = stepCountInt * 10
+                Console.WriteLine("stepcount" + stepCountInt.ToString + "stepmove" + stepMove.ToString)
+                'read imageposition via robotPosition if it is rotated or not and its location via topRobo&widthRobo
+                'move position by adding value to its original position
+                If ((robotPosition Mod 4) = 0) Then
+                    'update new position
+                    Console.WriteLine("Robo position" + topRobo.ToString + "," + widthRobo.ToString)
+                    topRobo -= stepMove
+                    If (topRobo > 0 And topRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("After changing" + (pic_robot.Location).ToString)
+                        Console.WriteLine("0move")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
+
+                ElseIf ((robotPosition Mod 4) = 1) Then
+                    'update new position
+                    widthRobo += stepMove
+                    If (widthRobo > 0 And widthRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("3moveb")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
+
+                ElseIf ((robotPosition Mod 4) = 2) Then
+                    'update new position
+                    topRobo += stepMove
+                    If (topRobo > 0 And topRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("2moveb")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
+                ElseIf ((robotPosition Mod 4) = 3) Then
+                    'update new position
+                    widthRobo -= stepMove
+                    If (widthRobo > 0 And widthRobo < 300) Then
+                        pic_robot.Location = New Point(widthRobo, topRobo)
+                        Console.WriteLine("1moveb")
+                    Else
+                        MessageBox.Show("Oh no, there is no available space to continue, 
+                        please adjust your commands for robot to move within the space")
+                    End If
+                End If
+
+            Else
+                MessageBox.Show（"Please enter the correct format of commands eg.F1,R1,L1,B2"）
+            End If
+
+            If (topRobo = topHome And widthRobo = widthHome) Then
+                MessageBox.Show("Thank you for sending robot back home!!")
             End If
         Next
 
