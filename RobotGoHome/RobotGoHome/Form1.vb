@@ -300,9 +300,7 @@
 
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-        label_info.Text = "Commands: " & Environment.NewLine & "R : rotate to right 90 degree" & Environment.NewLine & "L : rotate to left 90 degree" & Environment.NewLine & "B : move backward" & Environment.NewLine & "F : move forward"
-    End Sub
+
 
 
 End Class
