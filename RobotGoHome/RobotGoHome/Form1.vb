@@ -77,7 +77,7 @@
             "F : move forward" & Environment.NewLine & Environment.NewLine &
             Environment.NewLine & "Tips: " & Environment.NewLine &
             "Use comma to input multiple " & Environment.NewLine &
-            "command, follow with number to" & Environment.NewLine &
+            "command, follow with number to" & Environment.NewLine & Environment.NewLine &
             "indicate the times" & Environment.NewLine & "Example: R1,F2" &
             Environment.NewLine & "( R1: turn right 90 degree once ) &" &
             Environment.NewLine & "( F2: forward 2 steps )" &
@@ -189,8 +189,7 @@
                         Console.WriteLine("After changing" + (pic_robot.Location).ToString)
                         Console.WriteLine("0move")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
 
                     End If
 
@@ -201,8 +200,7 @@
                         pic_robot.Location = New Point(widthRobo, topRobo)
                         Console.WriteLine("1movef")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
 
                 ElseIf ((robotPosition Mod 4) = 2) Then
@@ -212,8 +210,7 @@
                         pic_robot.Location = New Point(widthRobo, topRobo)
                         Console.WriteLine("2movef")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
 
                 ElseIf ((robotPosition Mod 4) = 3) Then
@@ -223,8 +220,7 @@
                         pic_robot.Location = New Point(widthRobo, topRobo)
                         Console.WriteLine("3movef")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
 
                 End If
@@ -250,8 +246,7 @@
                         Console.WriteLine("After changing" + (pic_robot.Location).ToString)
                         Console.WriteLine("0move")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
 
                 ElseIf ((robotPosition Mod 4) = 1) Then
@@ -261,8 +256,7 @@
                         pic_robot.Location = New Point(widthRobo, topRobo)
                         Console.WriteLine("3moveb")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
 
                 ElseIf ((robotPosition Mod 4) = 2) Then
@@ -272,8 +266,7 @@
                         pic_robot.Location = New Point(widthRobo, topRobo)
                         Console.WriteLine("2moveb")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
                 ElseIf ((robotPosition Mod 4) = 3) Then
                     'update new position
@@ -282,8 +275,7 @@
                         pic_robot.Location = New Point(widthRobo, topRobo)
                         Console.WriteLine("1moveb")
                     Else
-                        MessageBox.Show("Oh no, there is no available space to continue, 
-                        please adjust your commands for robot to move within the space")
+                        MessageBox.Show("Oh no, there is no available space to continue, please adjust your commands for robot to move within the space")
                     End If
                 End If
 
